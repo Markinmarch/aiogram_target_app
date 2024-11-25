@@ -1,8 +1,19 @@
 import logging
 import os
+from redis import Redis
+
+from aiogram import Bot, Dispatcher
+from aiogram.fsm.storage.redis import RedisStorage
+
+from .config import (
+    BOT_TOKEN,
+    REDIS_HOST,
+    REDIS_PORT,
+    REDIS_BD
+)
 
 
-def logger():
+def logs():
     if 'aiogram_app.log' not in os.listdir('.'):
         with open('aiogram_app.log', mode = 'x', encoding = 'utf-8') as log_file:
             log_file.close()
@@ -18,38 +29,19 @@ def logger():
         ]
     )
 
+logger = logging.getLogger(__name__)
 
-# def main():
-#     if __name__ == "__main__":
-#         from DB.main_db import database, create_table
-#         from app import app_settings
-#         database
-#         create_table
-#         app_settings.dp.run(debug=True)
-# logger()
-# main()
+bot = Bot(
+    token = BOT_TOKEN,
+    parse_mode = 'HTML'
+)
 
-# logging.basicConfig(
-#     format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-#     level = logging.INFO
-# )
-# logger = logging.getLogger(__name__)
-# =====================================================
-# bot = Bot(
-#     token = BOT_TOKEN,
-#     parse_mode = 'HTML'
-# )
+storage = RedisStorage(
+    redis = Redis(
+        host = REDIS_HOST,
+        port = REDIS_PORT,
+        db = REDIS_BD
+    )
+)
 
-# storage = RedisStorage(
-#     redis = Redis(
-#         host = REDIS_HOST,
-#         port = REDIS_PORT,
-#         db = REDIS_BD
-#     )
-# )
-
-# dp = Dispatcher()
-
-# async def main() -> None:
-#     from red_bot import app
-#     await dp.start_polling(bot)
+dp = Dispatcher()

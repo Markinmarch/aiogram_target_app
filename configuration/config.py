@@ -28,3 +28,13 @@ BOT_ID = 6026823407
 CHANNEL_URL = 'https://t.me/sevastopol_assistant'
 
 BOT_URL = 'https://t.me/street_assistant_bot'
+
+POSTGRES_PASSWORD = os.getenv('POSTGRES_PASSWORD', '')
+
+POSTGRES_USER = 'mrkiztv'
+
+POSTGRES_HOST = 'localhost'
+
+POSTGRES_PORT = '5432'
+
+POSTGRES_DATABASE = 'aiogram_app_db'
