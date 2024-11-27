@@ -3,9 +3,11 @@ import asyncio
 from configuration.settings import logger, dp, bot
 
 
+async def main() -> None:
+    import app
+    await dp.start_polling(bot)
+        
 if __name__ == '__main__':
-    async def main() -> None:
-        await dp.start_polling(bot)
     try:
         asyncio.run(main())
     except Exception:

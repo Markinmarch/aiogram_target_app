@@ -32,8 +32,7 @@ def logs():
 logger = logging.getLogger(__name__)
 
 bot = Bot(
-    token = BOT_TOKEN,
-    parse_mode = 'HTML'
+    token = BOT_TOKEN
 )
 
 storage = RedisStorage(
